@@ -1,320 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Учебный интернет-магазин с каталогом товаров и формой заявки.">
-  <title>Учебный интернет-магазин</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Учебный магазин техники Sony и Logitech.">
+  <title>Наушники, мыши и клавиатуры — ShopProject</title>
+  <link rel="icon" href="images/headphones.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/theme.js" defer></script>
   <script src="js/data.js" defer></script>
   <script src="js/products.js" defer></script>
+  <script src="js/view.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/modal.js" defer></script>
   <script src="js/main.js" defer></script>
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Учебный интернет-магазин">
-  <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
 </head>
-
-<body class="page" id="top">
+<body id="top">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <div class="topbar"><div class="wrap"><span>Москва · учебный магазин</span><a href="contacts.html#feedback">Обратная связь</a></div></div>
   <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-        </ul>
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ShopProject, главная"><span class="brand-icon" aria-hidden="true"><i></i></span><span class="brand-word">Shop<span>Project</span></span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+        <a href="index.html" aria-current="page">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html">Контакты</a>
       </nav>
+      <a class="mobile-catalog" href="catalog.html">Каталог товаров</a>
+      <a class="cart-link" href="cart.html">Корзина <span class="cart-count" data-cart-count>0</span></a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема"><span aria-hidden="true">☾</span></button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Меню" aria-controls="site-nav" aria-expanded="false" hidden><i aria-hidden="true"></i></button>
     </div>
   </header>
-
-  <main class="page__main">
+  <main class="wrap main" id="main" tabindex="-1">
+    <noscript><p class="notice">Для работы каталога, корзины и формы включите JavaScript в браузере.</p></noscript>
     <section class="hero">
-      <h1 class="hero__title">Учебный интернет-магазин</h1>
-      <p class="hero__description">
-        Учебный многостраничный интернет-магазин.
-        Выберите товар на главной странице или в каталоге и заполните форму заявки.
-      </p>
-      <a class="button button--primary" href="#popular">Перейти к товарам</a>
-    </section>
-
-    <section class="section" id="advantages">
-      <h2 class="section__title">Преимущества проекта</h2>
-      <ul class="advantages-list">
-        <li class="advantages-list__item">понятная HTML-структура;</li>
-        <li class="advantages-list__item">семантические блоки страницы;</li>
-        <li class="advantages-list__item">подключение внешнего CSS-файла;</li>
-        <li class="advantages-list__item">единая навигация между страницами.</li>
-      </ul>
-    </section>
-
-    <section class="section" id="popular">
-      <h2 class="section__title">Популярные товары</h2>
-      <p class="section__description" id="product-summary"></p>
-
-      <p class="section__description">Модели реальные; цены и наличие демонстрационные. Изображения — условные иллюстрации категорий.</p>
-      <div class="products-grid">
-        <article class="product-card product-card--featured" aria-labelledby="headphones-title"
-          data-category="audio" data-price="5990" data-available="true">
-          <div class="product-card__media">
-            <img class="product-card__image" src="images/headphones.svg"
-              alt="Синие полноразмерные наушники с мягкими амбушюрами" width="640" height="480" loading="lazy" decoding="async">
-          </div>
-          <span class="product-card__badge">Хит</span>
-          <p class="product-card__category">Наушники · WH-CH520</p>
-          <h3 class="product-card__title" id="headphones-title">Наушники Sony WH-CH520</h3>
-          <p class="product-card__description">Беспроводные накладные наушники со встроенным микрофоном. Подключаются к двум устройствам и работают до 50 часов без подзарядки.</p>
-          <p class="product-card__availability" id="headphones-availability">В наличии</p>
-          <details class="product-card__details">
-            <summary class="product-card__summary">Характеристики</summary>
-            <table class="product-specs">
-              <caption class="product-specs__caption">Наушники Sony WH-CH520</caption>
-              <thead class="product-specs__head">
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="col">Параметр</th>
-                  <th class="product-specs__cell product-specs__cell--heading" scope="col">Значение</th>
-                </tr>
-              </thead>
-              <tbody class="product-specs__body">
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Подключение</th>
-                  <td class="product-specs__cell">Bluetooth 5.2</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Время работы</th>
-                  <td class="product-specs__cell">До 50 часов</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Микрофон</th>
-                  <td class="product-specs__cell">Встроенный</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Вес</th>
-                  <td class="product-specs__cell">около 147 г</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Питание</th>
-                  <td class="product-specs__cell">Встроенный аккумулятор</td>
-                </tr>
-              </tbody>
-            </table>
-          </details>
-          <div class="product-card__actions">
-            <div class="product-card__prices">
-              <p class="product-card__price" aria-label="Цена: 5990 рублей">5 990 ₽</p>
-
-            </div>
-            <button class="button button--primary product-card__button" type="button"
-              data-product="Наушники Sony WH-CH520" aria-describedby="headphones-availability">Заказать</button>
-          </div>
-        </article>
-
-        <article class="product-card product-card--discount" aria-labelledby="mouse-title"
-          data-category="mice" data-price="799" data-available="true">
-          <div class="product-card__media">
-            <img class="product-card__image" src="images/mouse.svg"
-              alt="Светло-серая компьютерная мышь с колёсиком и боковыми кнопками" width="640" height="480" loading="lazy" decoding="async">
-          </div>
-          <span class="product-card__badge">−200 ₽</span>
-          <p class="product-card__category">Мыши · M100</p>
-          <h3 class="product-card__title" id="mouse-title">Мышь Logitech M100</h3>
-          <p class="product-card__description">Проводная оптическая мышь для повседневной работы. Симметричная форма и подключение через USB без батареек.</p>
-          <p class="product-card__availability" id="mouse-availability">В наличии</p>
-          <details class="product-card__details">
-            <summary class="product-card__summary">Характеристики</summary>
-            <table class="product-specs">
-              <caption class="product-specs__caption">Мышь Logitech M100</caption>
-              <thead class="product-specs__head">
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="col">Параметр</th>
-                  <th class="product-specs__cell product-specs__cell--heading" scope="col">Значение</th>
-                </tr>
-              </thead>
-              <tbody class="product-specs__body">
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Подключение</th>
-                  <td class="product-specs__cell">USB-A</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Сенсор</th>
-                  <td class="product-specs__cell">1 000 dpi</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Кнопки</th>
-                  <td class="product-specs__cell">3</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Вес</th>
-                  <td class="product-specs__cell">90 г</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Питание</th>
-                  <td class="product-specs__cell">От USB</td>
-                </tr>
-              </tbody>
-            </table>
-          </details>
-          <div class="product-card__actions">
-            <div class="product-card__prices">
-              <p class="product-card__price" aria-label="Цена: 799 рублей">799 ₽</p>
-              <del class="product-card__old-price" aria-label="Прежняя цена: 999 рублей">999 ₽</del>
-            </div>
-            <button class="button button--primary product-card__button" type="button"
-              data-product="Мышь Logitech M100" aria-describedby="mouse-availability">Заказать</button>
-          </div>
-        </article>
-
-        <article class="product-card product-card--unavailable" aria-labelledby="keyboard-title"
-          data-category="keyboards" data-price="1490" data-available="false">
-          <div class="product-card__media">
-            <img class="product-card__image" src="images/keyboard.svg"
-              alt="Клавиатура со светлыми клавишами и синими акцентами" width="640" height="480" loading="lazy" decoding="async">
-          </div>
-          <span class="product-card__badge">Скоро</span>
-          <p class="product-card__category">Клавиатуры · K120</p>
-          <h3 class="product-card__title" id="keyboard-title">Клавиатура Logitech K120</h3>
-          <p class="product-card__description">Полноразмерная проводная клавиатура с цифровым блоком. Высокие клавиши и кабель USB для подключения к компьютеру.</p>
-          <p class="product-card__availability product-card__availability--unavailable" id="keyboard-availability">Временно нет в наличии</p>
-          <details class="product-card__details">
-            <summary class="product-card__summary">Характеристики</summary>
-            <table class="product-specs">
-              <caption class="product-specs__caption">Клавиатура Logitech K120</caption>
-              <thead class="product-specs__head">
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="col">Параметр</th>
-                  <th class="product-specs__cell product-specs__cell--heading" scope="col">Значение</th>
-                </tr>
-              </thead>
-              <tbody class="product-specs__body">
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Подключение</th>
-                  <td class="product-specs__cell">USB-A</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Формат</th>
-                  <td class="product-specs__cell">Полноразмерная, с цифровым блоком</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Кабель</th>
-                  <td class="product-specs__cell">1,5 м</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Вес</th>
-                  <td class="product-specs__cell">550 г</td>
-                </tr>
-                <tr class="product-specs__row">
-                  <th class="product-specs__cell product-specs__cell--heading" scope="row">Питание</th>
-                  <td class="product-specs__cell">От USB</td>
-                </tr>
-              </tbody>
-            </table>
-          </details>
-          <div class="product-card__actions">
-            <div class="product-card__prices">
-              <p class="product-card__price" aria-label="Цена: 1490 рублей">1 490 ₽</p>
-
-            </div>
-            <button class="button button--disabled product-card__button" type="button"
-              data-product="Клавиатура Logitech K120" aria-describedby="keyboard-availability" disabled>Нет в наличии</button>
-          </div>
-        </article>
+      <div class="hero-copy">
+        <p class="eyebrow">Каталог Sony и Logitech</p>
+        <h1>Техника для<br><span>рабочего стола</span></h1>
+        <p class="hero-description">Наушники для музыки, мыши и клавиатуры для работы. Сравните модели и соберите свой комплект.</p>
+        <div class="hero-actions"><a class="button button--primary" href="catalog.html">Выбрать технику</a><a class="underlink" href="catalog.html#comparison">Сравнить модели</a></div>
+        <div class="hero-facts"><div><small>Цены от</small><strong id="starting-price"></strong></div><p id="assortment-size"></p></div>
+      </div>
+      <div class="spotlight" aria-label="Категории магазина">
+        <a id="spotlight-link" href="catalog.html?category=audio">
+          <picture><source id="spotlight-source" type="image/webp" srcset="images/desk-hero-640.webp 640w, images/desk-hero-1280.webp 1280w" sizes="(min-width: 75rem) 630px, (min-width: 48rem) 50vw, 100vw">
+            <img id="spotlight-image" src="images/desk-hero-1280.webp" width="1280" height="960" alt="Графитовые наушники, клавиатура и мышь на деревянном столе" fetchpriority="high">
+          </picture>
+          <span class="spotlight-caption"><strong id="spotlight-name">Наушники Sony</strong><span id="spotlight-price"></span></span>
+        </a>
+        <div class="spotlight-pager" role="group" aria-label="Показать категорию">
+          <button type="button" data-slide="0" aria-label="Наушники" aria-pressed="true"></button>
+          <button type="button" data-slide="1" aria-label="Мыши" aria-pressed="false"></button>
+          <button type="button" data-slide="2" aria-label="Клавиатуры" aria-pressed="false"></button>
+        </div>
       </div>
     </section>
-
-    <section class="section faq" id="faq" aria-labelledby="faq-title">
-      <h2 class="section__title" id="faq-title">Часто задаваемые вопросы</h2>
-      <div class="faq__list">
-        <details class="faq__item">
-          <summary class="faq__question">Как найти подходящий товар?</summary>
-          <p class="faq__answer">Откройте <a href="catalog.html">каталог</a>, выберите категорию, диапазон цены и наличие, затем нажмите «Применить». Внизу каталога можно сравнить характеристики всех моделей.</p>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Как оформить заявку?</summary>
-          <p class="faq__answer">Нажмите «Заказать» у доступного товара. Укажите имя, e-mail, телефон, выберите тему заявки и отметьте согласие на обработку данных. Дату связи и комментарий можно оставить пустыми. Затем нажмите «Отправить заявку».</p>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Отправляется ли заявка в магазин?</summary>
-          <p class="faq__answer">Это учебный сайт. Форма проверяет заполнение полей и показывает сообщение об успешной проверке. Данные на сервер не отправляются, реальный заказ не создаётся.</p>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Цены и наличие товаров актуальны?</summary>
-          <p class="faq__answer">Цены, скидки и наличие указаны для демонстрации работы сайта. Названия моделей реальные, характеристики взяты из документации производителей, а изображения служат условными иллюстрациями категорий.</p>
-        </details>
-      </div>
+    <nav class="category-strip" aria-label="Категории товаров">
+      <a href="catalog.html?category=audio"><img src="images/headphones.svg" width="44" height="44" alt=""><span><b>Наушники</b><small>Модели Sony</small></span></a>
+      <a href="catalog.html?category=mice"><img src="images/mouse.svg" width="44" height="44" alt=""><span><b>Мыши</b><small>Для работы и игр</small></span></a>
+      <a href="catalog.html?category=keyboards"><img src="images/keyboard.svg" width="44" height="44" alt=""><span><b>Клавиатуры</b><small>Компактные и полноразмерные</small></span></a>
+    </nav>
+    <section class="section" id="popular" aria-labelledby="popular-title">
+      <div class="section-head"><h2 id="popular-title">Популярные товары</h2><a href="catalog.html">Весь каталог</a></div>
+      <div class="product-grid" id="popular-grid"></div>
     </section>
-
-    <aside class="aside-info">
-      <h2 class="aside-info__title">Информация для студентов</h2>
-      <p class="aside-info__text">
-        В проекте используются HTML, CSS и JavaScript, Flexbox-навигация
-        и Grid-сетка товаров. Компоненты оформлены по методологии БЭМ.
-      </p>
-    </aside>
+    <section class="section reading" aria-labelledby="faq-title">
+      <h2 id="faq-title">Вопросы о магазине</h2>
+      <details class="faq"><summary>Где сравнить модели?</summary><p>В <a href="catalog.html#comparison">таблице каталога</a> указаны тип подключения, особенности, вес, питание и цена. Полный список характеристик есть на странице каждого товара.</p></details>
+      <details class="faq"><summary>Как оформить заказ?</summary><p>Добавьте товары в корзину, проверьте количество и перейдите к оформлению. Для одного товара можно выбрать «Быстрый заказ» прямо в карточке.</p></details>
+      <details class="faq"><summary>Что происходит с заявкой?</summary><p>Это учебный магазин. Браузер проверяет форму и показывает подтверждение. Оплата и доставка не выполняются.</p></details>
+    </section>
   </main>
-
-  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-    <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
-    <p class="order-dialog__description" id="order-product-name" hidden></p>
-    <form class="order-form" id="order-form" action="#" method="post" novalidate>
-      <input id="selected-product" name="product" type="hidden">
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-name">Имя</label>
-        <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+  <dialog class="order-dialog" id="order-dialog" aria-labelledby="quick-title">
+    <div class="dialog-head"><h2 id="quick-title">Заявка</h2><button class="button button--small" data-close-dialog type="button">Закрыть</button></div>
+    <p id="quick-product" class="selection" hidden></p>
+    <form id="quick-form" class="request-form" data-request-form="quick" data-success="quick-success" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="quick-name">Имя</label>
+        <input id="quick-name" name="name" type="text" autocomplete="given-name" minlength="2" maxlength="100" required data-validate aria-describedby="quick-name-error">
+        <small class="field-error" id="quick-name-error"></small>
       </div>
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-email">E-mail</label>
-        <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+      <div class="field">
+        <label for="quick-email">Электронная почта</label>
+        <input id="quick-email" name="email" type="email" autocomplete="email" maxlength="254" required data-validate aria-describedby="quick-email-error">
+        <small class="field-error" id="quick-email-error"></small>
       </div>
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-phone">Телефон</label>
-        <input class="order-form__input" id="order-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}" aria-describedby="order-phone-hint" required>
-        <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+      <div class="field">
+        <label for="quick-phone">Телефон</label>
+        <input id="quick-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required data-validate aria-describedby="quick-phone-error quick-phone-hint">
+        <small class="hint" id="quick-phone-hint">Например, +7 (900) 123-45-67</small>
+        <small class="field-error" id="quick-phone-error"></small>
       </div>
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-date">Дата связи</label>
-        <input class="order-form__input" id="order-date" name="date" type="date">
+      <div class="field">
+        <label for="quick-date">Удобная дата связи (необязательно)</label>
+        <input id="quick-date" name="date" type="date" >
       </div>
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-topic">Тема заявки</label>
-        <select class="order-form__select" id="order-topic" name="topic" required>
-          <option value="">Выберите тему</option>
-          <option value="product">Заказ товара</option>
-          <option value="consultation">Консультация</option>
-          <option value="delivery">Доставка</option>
-        </select>
-      </div>
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-comment">Комментарий</label>
-        <textarea class="order-form__textarea" id="order-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
-      </div>
-      <div class="order-form__field">
-        <label class="order-form__label order-form__label--checkbox" for="order-agreement">
-          <input class="order-form__input" id="order-agreement" name="agreement" type="checkbox" required>
-          Я согласен на обработку данных
-        </label>
-      </div>
-      <div class="order-form__actions">
-        <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
-        <button class="button button--primary" type="submit">Отправить заявку</button>
-      </div>
-    </form>
-  </dialog>
-
-  <p class="success-message" id="success-message" role="status" hidden>
-    Заявка успешно проверена! Это учебная форма: данные на сервер не отправляются.
-  </p>
-
-  <a class="to-top" href="#top" aria-label="Вернуться к началу страницы">
-    <span class="to-top__icon" aria-hidden="true">↑</span>
-    Наверх
-  </a>
-
-  <footer class="site-footer" id="contacts">
-    <div class="site-footer__inner">
-      <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
-      <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
     </div>
+    <div class="field">
+      <label for="quick-topic">Тема заявки</label>
+      <select name="topic" id="quick-topic" data-validate required aria-describedby="quick-topic-error">
+        <option value="">Выберите тему</option><option value="product">Заказ товара</option>
+        <option value="consultation">Консультация</option><option value="delivery">Доставка</option>
+      </select>
+      <small class="field-error" id="quick-topic-error"></small>
+    </div>
+    <div class="field">
+      <label for="quick-comment">Комментарий (необязательно)</label>
+      <textarea id="quick-comment" name="comment" rows="3" maxlength="1500"></textarea>
+    </div>
+    <div class="field">
+      <label class="check" for="quick-agreement"><input type="checkbox" id="quick-agreement" name="agreement" data-validate required aria-describedby="quick-agreement-error"><span>Согласен на обработку данных учебной заявки</span></label>
+      <small class="field-error" id="quick-agreement-error"></small>
+    </div>
+    <p class="form-status" data-form-status aria-live="polite"></p>
+    <button class="button button--primary" type="submit">Отправить заявку</button>
+    <p class="hint">Учебная форма. Контактные данные проверяются только в браузере.</p>
+  </form>
+    <section id="quick-success" class="success" hidden><h3 tabindex="-1">Заявка принята</h3><p></p></section>
+  </dialog>
+  <p class="visually-hidden" id="shop-status" role="status" aria-live="polite"></p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner"><div><strong>ShopProject</strong><p>Учебный магазин · Цены демонстрационные</p></div><a href="#top">Наверх</a></div>
   </footer>
 </body>
 </html>
