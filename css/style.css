@@ -271,4 +271,24 @@ h3 { font-size: 1.12rem; }
 .site-footer { margin-top: auto; border-top: 1px solid var(--line); background: var(--subtle); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; }
 .footer-inner p { color: var(--muted); font-size: .875rem; margin: .15rem 0 0; }
-.footer-inner > a { padding: .55rem .15rem; }
+.back-to-top {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-text);
+  text-decoration: none;
+}
+.back-to-top:hover { background: var(--accent-dark); color: var(--accent-text); }
+.back-to-top::before {
+  content: '';
+  box-sizing: border-box;
+  width: .7rem;
+  height: .7rem;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: translateY(.15rem) rotate(45deg);
+}
