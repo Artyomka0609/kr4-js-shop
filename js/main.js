@@ -1,3 +1,9 @@
+const summary = document.querySelector('#product-summary');
+if (summary) {
+  summary.textContent = createProductSummary(product);
+  console.info(summary.textContent, calculateDiscount(2500, 10), calculateFinalPrice(2500, 10));
+}
+
 // Учитываем высоту закреплённой шапки при переходе по якорным ссылкам.
 const siteHeader = document.querySelector('.site-header');
 
