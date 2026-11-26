@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Учебная форма заявки и состав заказа.">
+  <title>Оформление заказа — ShopProject</title>
+  <link rel="icon" href="images/headphones.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/theme.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/view.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/modal.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <div class="topbar"><div class="wrap"><span>Москва · учебный магазин</span><a href="contacts.html#feedback">Обратная связь</a></div></div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ShopProject, главная"><span class="brand-icon" aria-hidden="true"><i></i></span><span class="brand-word">Shop<span>Project</span></span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <a class="mobile-catalog" href="catalog.html">Каталог товаров</a>
+      <a class="cart-link" href="cart.html">Корзина <span class="cart-count" data-cart-count>0</span></a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема"><span aria-hidden="true">☾</span></button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Меню" aria-controls="site-nav" aria-expanded="false" hidden><i aria-hidden="true"></i></button>
+    </div>
+  </header>
+  <main class="wrap main" id="main" tabindex="-1">
+    <noscript><p class="notice">Для работы каталога, корзины и формы включите JavaScript в браузере.</p></noscript>
+    <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Главная</a><a href="cart.html">Корзина</a><span aria-current="page">Оформление</span></nav>
+    <div class="page-title"><h1>Оформление заказа</h1></div>
+    <section class="empty-state" id="order-empty" hidden><h2>Сначала добавьте товары</h2><p>После добавления в корзину здесь появятся состав заказа и форма.</p><a class="button button--primary" href="catalog.html">В каталог</a> <button type="button" class="button button--secondary" data-open-request>Задать вопрос</button></section>
+    <div class="checkout-layout" id="order-filled" hidden>
+      <section class="panel form-panel"><h2>Контактные данные</h2><form id="order-form" class="request-form" data-request-form="checkout" data-success="order-success" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="order-name">Имя</label>
+        <input id="order-name" name="name" type="text" autocomplete="given-name" minlength="2" maxlength="100" required data-validate aria-describedby="order-name-error">
+        <small class="field-error" id="order-name-error"></small>
+      </div>
+      <div class="field">
+        <label for="order-email">Электронная почта</label>
+        <input id="order-email" name="email" type="email" autocomplete="email" maxlength="254" required data-validate aria-describedby="order-email-error">
+        <small class="field-error" id="order-email-error"></small>
+      </div>
+      <div class="field">
+        <label for="order-phone">Телефон</label>
+        <input id="order-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required data-validate aria-describedby="order-phone-error order-phone-hint">
+        <small class="hint" id="order-phone-hint">Например, +7 (900) 123-45-67</small>
+        <small class="field-error" id="order-phone-error"></small>
+      </div>
+      <div class="field">
+        <label for="order-date">Удобная дата связи (необязательно)</label>
+        <input id="order-date" name="date" type="date" >
+      </div>
+    </div>
+    <div class="field">
+      <label for="order-comment">Комментарий (необязательно)</label>
+      <textarea id="order-comment" name="comment" rows="3" maxlength="1500"></textarea>
+    </div>
+    <div class="field">
+      <label class="check" for="order-agreement"><input type="checkbox" id="order-agreement" name="agreement" data-validate required aria-describedby="order-agreement-error"><span>Согласен на обработку данных учебной заявки</span></label>
+      <small class="field-error" id="order-agreement-error"></small>
+    </div>
+    <p class="form-status" data-form-status aria-live="polite"></p>
+    <button class="button button--primary" type="submit">Оформить заказ</button>
+    <p class="hint">Учебная форма. Контактные данные проверяются только в браузере.</p>
+  </form></section>
+      <aside class="panel total-panel"><h2>Ваш заказ</h2><ul class="receipt" id="order-items"></ul>
+        <p class="receipt-total"><span>Итого</span><strong data-cart-total>0 ₽</strong></p><a href="cart.html">Изменить корзину</a></aside>
+    </div>
+    <section class="success" id="order-success" hidden><h2 tabindex="-1">Заказ оформлен</h2><p></p><a class="button button--primary" href="catalog.html">Вернуться в каталог</a></section>
+  </main>
+  <dialog class="order-dialog" id="order-dialog" aria-labelledby="quick-title">
+    <div class="dialog-head"><h2 id="quick-title">Заявка</h2><button class="button button--small" data-close-dialog type="button">Закрыть</button></div>
+    <p id="quick-product" class="selection" hidden></p>
+    <form id="quick-form" class="request-form" data-request-form="quick" data-success="quick-success" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="quick-name">Имя</label>
+        <input id="quick-name" name="name" type="text" autocomplete="given-name" minlength="2" maxlength="100" required data-validate aria-describedby="quick-name-error">
+        <small class="field-error" id="quick-name-error"></small>
+      </div>
+      <div class="field">
+        <label for="quick-email">Электронная почта</label>
+        <input id="quick-email" name="email" type="email" autocomplete="email" maxlength="254" required data-validate aria-describedby="quick-email-error">
+        <small class="field-error" id="quick-email-error"></small>
+      </div>
+      <div class="field">
+        <label for="quick-phone">Телефон</label>
+        <input id="quick-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required data-validate aria-describedby="quick-phone-error quick-phone-hint">
+        <small class="hint" id="quick-phone-hint">Например, +7 (900) 123-45-67</small>
+        <small class="field-error" id="quick-phone-error"></small>
+      </div>
+      <div class="field">
+        <label for="quick-date">Удобная дата связи (необязательно)</label>
+        <input id="quick-date" name="date" type="date" >
+      </div>
+    </div>
+    <div class="field">
+      <label for="quick-topic">Тема заявки</label>
+      <select name="topic" id="quick-topic" data-validate required aria-describedby="quick-topic-error">
+        <option value="">Выберите тему</option><option value="product">Заказ товара</option>
+        <option value="consultation">Консультация</option><option value="delivery">Доставка</option>
+      </select>
+      <small class="field-error" id="quick-topic-error"></small>
+    </div>
+    <div class="field">
+      <label for="quick-comment">Комментарий (необязательно)</label>
+      <textarea id="quick-comment" name="comment" rows="3" maxlength="1500"></textarea>
+    </div>
+    <div class="field">
+      <label class="check" for="quick-agreement"><input type="checkbox" id="quick-agreement" name="agreement" data-validate required aria-describedby="quick-agreement-error"><span>Согласен на обработку данных учебной заявки</span></label>
+      <small class="field-error" id="quick-agreement-error"></small>
+    </div>
+    <p class="form-status" data-form-status aria-live="polite"></p>
+    <button class="button button--primary" type="submit">Отправить заявку</button>
+    <p class="hint">Учебная форма. Контактные данные проверяются только в браузере.</p>
+  </form>
+    <section id="quick-success" class="success" hidden><h3 tabindex="-1">Заявка принята</h3><p></p></section>
+  </dialog>
+  <p class="visually-hidden" id="shop-status" role="status" aria-live="polite"></p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner"><div><strong>ShopProject</strong><p>Учебный магазин · Цены демонстрационные</p></div><a href="#top">Наверх</a></div>
+  </footer>
+</body>
+</html>

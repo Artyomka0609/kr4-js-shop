@@ -1,69 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Контактная информация учебного интернет-магазина.">
-  <title>Контакты — Учебный интернет-магазин</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Контакты магазина и форма обратной связи.">
+  <title>Контакты — ShopProject</title>
+  <link rel="icon" href="images/headphones.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/theme.js" defer></script>
   <script src="js/data.js" defer></script>
   <script src="js/products.js" defer></script>
+  <script src="js/view.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/modal.js" defer></script>
   <script src="js/main.js" defer></script>
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Учебный интернет-магазин">
-  <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
 </head>
-<body class="page" id="top">
+<body id="top">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <div class="topbar"><div class="wrap"><span>Москва · учебный магазин</span><a href="contacts.html#feedback">Обратная связь</a></div></div>
   <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="contacts.html" aria-current="page">Контакты</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-        </ul>
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ShopProject, главная"><span class="brand-icon" aria-hidden="true"><i></i></span><span class="brand-word">Shop<span>Project</span></span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html" aria-current="page">Контакты</a>
       </nav>
+      <a class="mobile-catalog" href="catalog.html">Каталог товаров</a>
+      <a class="cart-link" href="cart.html">Корзина <span class="cart-count" data-cart-count>0</span></a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема"><span aria-hidden="true">☾</span></button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Меню" aria-controls="site-nav" aria-expanded="false" hidden><i aria-hidden="true"></i></button>
     </div>
   </header>
-
-  <main class="page__main">
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current" aria-current="page">Контакты</span>
-    </nav>
-
-    <section class="section">
-      <h1 class="section__title">Контакты</h1>
-      <p class="section__description">
-        Здесь размещается контактная информация учебного интернет-магазина.
-      </p>
-      <ul class="contacts-list">
-        <li class="contacts-list__item">Телефон: +7 (900) 000-00-00</li>
-        <li class="contacts-list__item">E-mail: info@example.com</li>
-        <li class="contacts-list__item">Адрес: г. Москва, учебный проект</li>
-      </ul>
-    </section>
-
-    <section class="section" id="feedback">
-      <h2 class="section__title">Обратная связь</h2>
-      <p class="section__description">
-        Для отправки заявки используйте форму в модальном окне на главной странице.
-      </p>
-      <a class="button button--primary" href="index.html#order-dialog">Перейти к форме</a>
-    </section>
-  </main>
-  <a class="to-top" href="#top" aria-label="Вернуться к началу страницы">
-    <span class="to-top__icon" aria-hidden="true">↑</span>
-    Наверх
-  </a>
-
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
-      <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
+  <main class="wrap main" id="main" tabindex="-1">
+    <noscript><p class="notice">Для работы каталога, корзины и формы включите JavaScript в браузере.</p></noscript>
+    <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Главная</a><span aria-current="page">Контакты</span></nav>
+    <div class="page-title"><h1>Контакты</h1></div>
+    <div class="contact-layout">
+      <section class="panel contact-info"><h2>Учебный магазин</h2><dl>
+        <dt>Город</dt><dd>Москва</dd><dt>Телефон</dt><dd>+7 (900) 000-00-00</dd><dt>Электронная почта</dt><dd>info@example.com</dd>
+      </dl><p class="hint">Контакты демонстрационные.</p></section>
+      <section class="panel form-panel" id="feedback"><h2>Обратная связь</h2><form id="contact-form" class="request-form" data-request-form="contact" data-success="contact-success" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="contact-name">Имя</label>
+        <input id="contact-name" name="name" type="text" autocomplete="given-name" minlength="2" maxlength="100" required data-validate aria-describedby="contact-name-error">
+        <small class="field-error" id="contact-name-error"></small>
+      </div>
+      <div class="field">
+        <label for="contact-email">Электронная почта</label>
+        <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required data-validate aria-describedby="contact-email-error">
+        <small class="field-error" id="contact-email-error"></small>
+      </div>
+      <div class="field">
+        <label for="contact-phone">Телефон</label>
+        <input id="contact-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required data-validate aria-describedby="contact-phone-error contact-phone-hint">
+        <small class="hint" id="contact-phone-hint">Например, +7 (900) 123-45-67</small>
+        <small class="field-error" id="contact-phone-error"></small>
+      </div>
+      <div class="field">
+        <label for="contact-date">Удобная дата связи (необязательно)</label>
+        <input id="contact-date" name="date" type="date" >
+      </div>
     </div>
+    <div class="field">
+      <label for="contact-topic">Тема заявки</label>
+      <select name="topic" id="contact-topic" data-validate required aria-describedby="contact-topic-error">
+        <option value="">Выберите тему</option><option value="product">Заказ товара</option>
+        <option value="consultation" selected>Консультация</option><option value="delivery">Доставка</option>
+      </select>
+      <small class="field-error" id="contact-topic-error"></small>
+    </div>
+    <div class="field">
+      <label for="contact-comment">Комментарий (необязательно)</label>
+      <textarea id="contact-comment" name="comment" rows="3" maxlength="1500"></textarea>
+    </div>
+    <div class="field">
+      <label class="check" for="contact-agreement"><input type="checkbox" id="contact-agreement" name="agreement" data-validate required aria-describedby="contact-agreement-error"><span>Согласен на обработку данных учебной заявки</span></label>
+      <small class="field-error" id="contact-agreement-error"></small>
+    </div>
+    <p class="form-status" data-form-status aria-live="polite"></p>
+    <button class="button button--primary" type="submit">Отправить заявку</button>
+    <p class="hint">Учебная форма. Контактные данные проверяются только в браузере.</p>
+  </form>
+        <div id="contact-success" class="success" hidden><h3 tabindex="-1">Заявка принята</h3><p></p><a href="catalog.html">Перейти в каталог</a></div>
+      </section>
+    </div>
+  </main>
+  <p class="visually-hidden" id="shop-status" role="status" aria-live="polite"></p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner"><div><strong>ShopProject</strong><p>Учебный магазин · Цены демонстрационные</p></div><a href="#top">Наверх</a></div>
   </footer>
 </body>
 </html>

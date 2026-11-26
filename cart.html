@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Товары, количество и итоговая сумма заказа.">
+  <title>Корзина — ShopProject</title>
+  <link rel="icon" href="images/headphones.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/theme.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/view.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/modal.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <div class="topbar"><div class="wrap"><span>Москва · учебный магазин</span><a href="contacts.html#feedback">Обратная связь</a></div></div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ShopProject, главная"><span class="brand-icon" aria-hidden="true"><i></i></span><span class="brand-word">Shop<span>Project</span></span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <a class="mobile-catalog" href="catalog.html">Каталог товаров</a>
+      <a class="cart-link" href="cart.html" aria-current="page">Корзина <span class="cart-count" data-cart-count>0</span></a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема"><span aria-hidden="true">☾</span></button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Меню" aria-controls="site-nav" aria-expanded="false" hidden><i aria-hidden="true"></i></button>
+    </div>
+  </header>
+  <main class="wrap main" id="main" tabindex="-1">
+    <noscript><p class="notice">Для работы каталога, корзины и формы включите JavaScript в браузере.</p></noscript>
+    <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Главная</a><span aria-current="page">Корзина</span></nav>
+    <div class="page-title"><h1>Корзина</h1><a href="catalog.html">Продолжить покупки</a></div>
+    <section class="empty-state" id="cart-empty" hidden><h2>Корзина пока пуста</h2><p>Выберите товар в каталоге и нажмите «В корзину».</p><a href="catalog.html" class="button button--primary">Перейти в каталог</a></section>
+    <div class="checkout-layout" id="cart-filled" hidden>
+      <section aria-labelledby="cart-items-title"><h2 id="cart-items-title">Товары в корзине</h2><ul class="cart-list" id="cart-list"></ul></section>
+      <aside class="panel total-panel"><h2>Ваш заказ</h2><p class="receipt-row"><span>Количество, шт.</span><strong data-cart-count>0</strong></p>
+        <p class="receipt-total"><span>Итого</span><strong data-cart-total>0 ₽</strong></p><a class="button button--primary" href="order.html">Перейти к оформлению</a></aside>
+    </div>
+  </main>
+  <p class="visually-hidden" id="shop-status" role="status" aria-live="polite"></p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner"><div><strong>ShopProject</strong><p>Учебный магазин · Цены демонстрационные</p></div><a href="#top">Наверх</a></div>
+  </footer>
+</body>
+</html>
