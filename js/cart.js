@@ -9,7 +9,7 @@ function normalizeCart(value) {
   for (const entry of value) {
     if (!entry || !Number.isSafeInteger(entry.quantity) || entry.quantity < 1) continue;
     const item = findProductById(products, entry.id);
-    if (!item || !item.inStock) continue;
+    if (!item || !item.isAvailable) continue;
     const previous = quantities.get(item.id) || 0;
     quantities.set(item.id, Math.min(cartLimit, previous + entry.quantity));
   }
@@ -56,7 +56,7 @@ function changeCart(change) {
 
 function changeQuantity(id, action) {
   const item = findProductById(products, id);
-  if (!item || !item.inStock) return Promise.resolve(false);
+  if (!item || !item.isAvailable) return Promise.resolve(false);
   return changeCart(entries => {
     const entry = entries.find(line => line.id === id);
     if (!entry) return action === 'add' ? [...entries, {id, quantity: 1}] : null;
@@ -83,7 +83,7 @@ function cartTotals(entries) {
 function quantityButton(item, label, action, disabled = false) {
   const button = actionButton(label, action, item.id, 'quantity__button');
   const verb = action === 'increase' ? 'Увеличить количество' : 'Уменьшить количество';
-  button.setAttribute('aria-label', verb + ' — ' + item.name);
+  button.setAttribute('aria-label', verb + ' — ' + item.title);
   button.disabled = disabled;
   return button;
 }
@@ -97,17 +97,17 @@ function cartRow(entry) {
   photo.setAttribute('aria-hidden', 'true');
   photo.append(productImage(item));
   const info = element('div', 'cart-row__info');
-  const link = element('a', 'cart-row__name', item.name);
+  const link = element('a', 'cart-row__name', item.title);
   link.href = productUrl(item);
   info.append(link, element('span', 'muted', formatPrice(item.price) + ' за шт.'));
   const control = element('div', 'quantity');
   control.setAttribute('role', 'group');
-  control.setAttribute('aria-label', 'Количество — ' + item.name);
+  control.setAttribute('aria-label', 'Количество — ' + item.title);
   control.append(quantityButton(item, '−', 'decrease', entry.quantity === 1),
     element('span', 'quantity__value', entry.quantity), quantityButton(item, '+', 'increase', entry.quantity === cartLimit));
   const buttons = element('div', 'cart-row__controls');
   const remove = actionButton('Удалить', 'remove', item.id, 'text-control');
-  remove.setAttribute('aria-label', 'Удалить — ' + item.name);
+  remove.setAttribute('aria-label', 'Удалить — ' + item.title);
   buttons.append(control, remove);
   row.append(photo, info, buttons, element('strong', 'cart-row__total', formatPrice(item.price * entry.quantity)));
   return row;
@@ -141,7 +141,7 @@ function renderCart() {
     const rows = entries.map(entry => {
       const item = findProductById(products, entry.id);
       const row = element('li', 'receipt-row');
-      row.append(element('span', '', item.name + ' × ' + entry.quantity),
+      row.append(element('span', '', item.title + ' × ' + entry.quantity),
         element('strong', '', formatPrice(item.price * entry.quantity)));
       return row;
     });

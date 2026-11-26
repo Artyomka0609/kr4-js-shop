@@ -15,26 +15,26 @@ function calculateFinalPrice(price, discountPercent) {
 }
 
 function getProductStatus(item) {
-  return item.inStock ? 'В наличии' : 'Нет в наличии';
+  return item.isAvailable ? 'В наличии' : 'Нет в наличии';
 }
 
 function createProductSummary(item) {
-  return [item.name, formatPrice(item.price), getProductStatus(item)].join(' · ');
+  return [item.title, formatPrice(item.price), getProductStatus(item)].join(' · ');
 }
 
 const productNames = new Intl.Collator('ru', {numeric: true, sensitivity: 'base'});
 
 function getProductTitles(items) {
-  return items.map(item => item.name);
+  return items.map(item => item.title);
 }
 
 function getAvailableProducts(items) {
-  return items.filter(item => item.inStock);
+  return items.filter(item => item.isAvailable);
 }
 
 function searchProducts(items, query = '') {
   const text = query.trim().toLocaleLowerCase('ru');
-  return items.filter(item => item.name.toLocaleLowerCase('ru').includes(text));
+  return items.filter(item => item.title.toLocaleLowerCase('ru').includes(text));
 }
 
 function filterProductsByCategory(items, category = 'all') {
@@ -69,6 +69,6 @@ function getPreparedProducts(items, query = '', category = 'all', sort = 'defaul
   const max = options.maxPrice ?? Infinity;
   result = result.filter(item => item.price >= min && item.price <= max);
   if (sort === 'asc' || sort === 'desc') return sortProductsByPrice(result, sort);
-  if (sort === 'name') result.sort((left, right) => productNames.compare(left.name, right.name));
+  if (sort === 'name') result.sort((left, right) => productNames.compare(left.title, right.title));
   return result;
 }

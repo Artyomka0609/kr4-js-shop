@@ -16,7 +16,7 @@ function initShoppingButtons() {
       timers.set(button, setTimeout(() => { button.textContent = 'В корзину'; }, 1400));
     }
     const totals = cartTotals(readCart());
-    status.textContent = item.name + '. В корзине ' + totals.quantity + ' шт. на ' + formatPrice(totals.total) + '.';
+    status.textContent = item.title + '. В корзине ' + totals.quantity + ' шт. на ' + formatPrice(totals.total) + '.';
   });
 }
 

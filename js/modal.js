@@ -6,10 +6,10 @@ function initOrderDialog() {
   let opener;
 
   function openRequest(item, trigger) {
-    if (item && !item.inStock) return;
+    if (item && !item.isAvailable) return;
     opener = trigger || document.querySelector('main');
     resetRequestForm(form);
-    form.dataset.productName = item ? item.name : '';
+    form.dataset.productName = item ? item.title : '';
     form.elements.topic.value = item ? 'product' : 'consultation';
     productName.textContent = item ? createProductSummary(item) : '';
     productName.hidden = !item;

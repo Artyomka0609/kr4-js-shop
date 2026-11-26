@@ -22,7 +22,7 @@ function productImage(item, lazy = true) {
 
 function stockLabel(item) {
   const label = element('span', 'stock', getProductStatus(item));
-  if (!item.inStock) label.classList.add('stock--out');
+  if (!item.isAvailable) label.classList.add('stock--out');
   return label;
 }
 
@@ -47,13 +47,13 @@ function actionButton(text, action, id, classes = 'button button--primary') {
 
 function productActions(item) {
   const group = element('div', 'product-actions');
-  const add = actionButton(item.inStock ? 'В корзину' : 'Нет в наличии', 'add', item.id);
-  add.disabled = !item.inStock;
-  if (item.inStock) add.setAttribute('aria-label', 'В корзину — ' + item.name);
+  const add = actionButton(item.isAvailable ? 'В корзину' : 'Нет в наличии', 'add', item.id);
+  add.disabled = !item.isAvailable;
+  if (item.isAvailable) add.setAttribute('aria-label', 'В корзину — ' + item.title);
   group.append(add);
-  if (item.inStock) {
+  if (item.isAvailable) {
     const quick = actionButton('Быстрый заказ', 'quick', item.id, 'button button--text');
-    quick.setAttribute('aria-label', 'Быстрый заказ — ' + item.name);
+    quick.setAttribute('aria-label', 'Быстрый заказ — ' + item.title);
     group.append(quick);
   }
   return group;
@@ -61,7 +61,7 @@ function productActions(item) {
 
 function specsTable(item) {
   const table = element('table', 'specs');
-  const caption = element('caption', 'visually-hidden', 'Характеристики модели ' + item.name);
+  const caption = element('caption', 'visually-hidden', 'Характеристики модели ' + item.title);
   const body = element('tbody');
   for (const [label, value] of item.specs) {
     const row = element('tr');
@@ -85,7 +85,7 @@ function createProductCard(item) {
   if (item.badge) media.append(element('span', 'product-card__badge', item.badge));
   const body = element('div', 'product-card__body');
   const heading = element('h3', 'product-card__title');
-  const link = element('a', '', item.name);
+  const link = element('a', '', item.title);
   link.href = productUrl(item);
   heading.append(link);
   const details = element('details', 'product-card__specs');
@@ -114,14 +114,14 @@ function renderProductPage() {
     document.querySelector('#unknown-product').hidden = false;
     return;
   }
-  current.textContent = item.name;
-  document.title = item.name + ' — ShopProject';
+  current.textContent = item.title;
+  document.title = item.title + ' — ShopProject';
   const media = element('div', 'product-detail__media media--' + item.category);
   media.append(productImage(item, false));
   const information = element('div', 'product-detail__info');
   const category = element('a', 'category-link', categories[item.category]);
   category.href = 'catalog.html?category=' + encodeURIComponent(item.category);
-  information.append(category, element('h1', '', item.name), stockLabel(item),
+  information.append(category, element('h1', '', item.title), stockLabel(item),
     element('p', 'lead', item.description), priceLabel(item), productActions(item));
   container.append(media, information);
   const specs = document.querySelector('#product-specifications');
@@ -137,7 +137,7 @@ function renderComparison() {
     const row = element('tr');
     const model = element('th');
     model.scope = 'row';
-    const link = element('a', '', item.name);
+    const link = element('a', '', item.title);
     link.href = productUrl(item);
     model.append(link);
     row.append(model);
