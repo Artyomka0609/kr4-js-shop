@@ -1,7 +1,7 @@
 const summary = document.querySelector('#product-summary');
 if (summary) {
-  summary.textContent = createProductSummary(product);
-  console.info(summary.textContent, calculateDiscount(2500, 10), calculateFinalPrice(2500, 10));
+  summary.textContent = `Моделей в каталоге: ${products.length}. В наличии: ${countAvailableProducts(products)}. Средняя цена: ${formatPrice(calculateAveragePrice(products))}.`;
+  console.table(getPreparedProducts(products, 'sony', 'audio', 'asc'));
 }
 
 // Учитываем высоту закреплённой шапки при переходе по якорным ссылкам.
